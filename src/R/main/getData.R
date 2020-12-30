@@ -85,4 +85,49 @@ getData <- function(dir) {
             token = token
         )
     )
+    # get retweets
+    RDataCreate(
+        dir = dir,
+        x = "retweets",
+        fun = function(timeline, token) {
+            x <- timeline %>%
+                filter(retweet_count > 0 & !is_retweet) %>%
+                select(status_id, retweet_count, is_quote) %>%
+                arrange(retweet_count, is_quote)
+            for (i in 1:nrow(x)) {
+                if (i %% 75 == 1 & i != 1) {
+                    Sys.sleep(910)
+                }
+                xi <- x[i, ]
+                xiu <- get_retweeters(xi$status_id, token = token)
+                if (nrow(xiu) != xi$retweet_count) {
+                    xiu <- xi
+                    xiu$user_id <- NA_character_
+                } else {
+                    xiu <- data.frame(xi, xiu)
+                }
+                if (i == 1) {
+                    y <- xiu
+                } else {
+                    y <- rbind(y, xiu)
+                }
+            }
+            row.names(y) <- NULL
+            return(y)
+        },
+        args = list(
+            timeline = RDataUse(dir, "timeline"),
+            token = token
+        )
+    )
+    # get retweeters
+    RDataCreate(
+        dir = dir,
+        x = "retweeters",
+        fun = lookup_users,
+        args = list(
+            users = unique(filter(RDataUse(dir, "retweets"), !is.na(user_id))$user_id),
+            token = token
+        )
+    )
 }
