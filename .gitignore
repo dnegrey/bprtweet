@@ -1,0 +1,10 @@
+.Rproj.user
+.Rhistory
+.RData
+*.Rproj
+*.Rout
+data/*
+!data/README.md
+pub/*
+!pub/README.md
+success.txt
