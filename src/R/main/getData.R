@@ -96,6 +96,7 @@ getData <- function(dir) {
                 arrange(retweet_count, is_quote)
             for (i in 1:nrow(x)) {
                 if (i %% 75 == 1 & i != 1) {
+                    sprintf("retweet iteration value is %s", i)
                     Sys.sleep(910)
                 }
                 xi <- x[i, ]
