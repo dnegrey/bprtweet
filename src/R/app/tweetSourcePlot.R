@@ -1,10 +1,10 @@
-tweetTypePlot <- function(x) {
-    x$Type <- paste0(x$Type, " ")
-    x$Type <- factor(x$Type, levels = rev(x$Type))
+tweetSourcePlot <- function(x) {
+    x$Source <- paste0(x$Source, " ")
+    x$Source <- factor(x$Source, levels = rev(x$Source))
     y <- plot_ly(x) %>%
         add_trace(
             x = ~Percent,
-            y = ~Type,
+            y = ~Source,
             type = "bar",
             marker = list(
                 color = "#525252"

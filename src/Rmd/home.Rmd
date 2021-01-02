@@ -53,7 +53,13 @@ tweetTypePlot(
 )
 ```
 
-### 
+### **Tweet Source**
+
+```{r}
+tweetSourcePlot(
+    x = tweetSourceSummary()
+)
+```
 
 ### 
 

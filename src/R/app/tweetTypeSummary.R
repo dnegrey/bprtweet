@@ -7,7 +7,8 @@ tweetTypeSummary <- function(x = main$timeline) {
             sum(x$is_retweet)
         ),
         stringsAsFactors = FALSE
-    )
+    ) %>%
+        arrange(desc(Freq))
     y$Percent <- y$Freq/sum(y$Freq)
     return(y)
 }
