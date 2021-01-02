@@ -47,7 +47,17 @@ Row
 
 ### 
 
+### 
+
+### 
+
 Row
 ----------
 
-### 
+### **Weekly Tweet Activity**
+
+```{r}
+tweetCountPlot(
+    x = tweetCountSummary("week")
+)
+```
