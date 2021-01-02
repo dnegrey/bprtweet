@@ -45,7 +45,13 @@ valueBox(
 Row
 ----------
 
-### 
+### **Tweet Type**
+
+```{r}
+tweetTypePlot(
+    x = tweetTypeSummary()
+)
+```
 
 ### 
 
