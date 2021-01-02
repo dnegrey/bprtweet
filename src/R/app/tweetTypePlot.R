@@ -1,4 +1,4 @@
-tweetTypePlot <- function(x) {
+tweetTypePlot <- function(x, barColor = "#32B1E6") {
     x$Type <- paste0(x$Type, " ")
     x$Type <- factor(x$Type, levels = rev(x$Type))
     y <- plot_ly(x) %>%
@@ -7,7 +7,7 @@ tweetTypePlot <- function(x) {
             y = ~Type,
             type = "bar",
             marker = list(
-                color = "#525252"
+                color = barColor
             ),
             hoverinfo = "text",
             text = ~sprintf(
