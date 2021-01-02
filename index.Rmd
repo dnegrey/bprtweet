@@ -39,6 +39,24 @@ Home {data-icon=fa-home}
 ```{r, child = "src/Rmd/home.Rmd"}
 ```
 
+Followers {data-icon=fa-users}
+=========
+
+```{r, child = "src/Rmd/followers.Rmd"}
+```
+
+Hashtags {data-icon=fa-hashtag}
+=========
+
+```{r, child = "src/Rmd/hashtags.Rmd"}
+```
+
+Slides {data-icon=fa-slideshare}
+=========
+
+```{r, child = "src/Rmd/slides.Rmd"}
+```
+
 Info {data-icon=fa-info-circle}
 =========
 

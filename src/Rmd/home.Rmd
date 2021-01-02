@@ -1,7 +1,49 @@
 Row
 ----------
 
-### 
+
+### Tweets
+
+```{r}
+valueBox(
+    value = formatNumeric(main$user$statuses_count, "num"),
+    icon = "fa-twitter",
+    color = "#32B1E6"
+)
+```
+
+### Followers
+
+```{r}
+valueBox(
+    value = formatNumeric(main$user$followers_count, "num"),
+    icon = "fa-users",
+    color = "#32B1E6"
+)
+```
+
+### Following
+
+```{r}
+valueBox(
+    value = formatNumeric(main$user$friends_count, "num"),
+    icon = "fa-user-check",
+    color = "#32B1E6"
+)
+```
+
+### Likes
+
+```{r}
+valueBox(
+    value = formatNumeric(main$user$favourites_count, "num"),
+    icon = "fa-thumbs-up",
+    color = "#32B1E6"
+)
+```
+
+Row
+----------
 
 ### 
 

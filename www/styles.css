@@ -174,3 +174,12 @@ app specific
 .shiny-input-container .control-label {
     text-decoration: underline;
 }
+
+/* home */
+#section-home .value-box .value {
+    color: #F9D230;
+}
+#section-home .value-box .caption {
+    color: #0D2935;
+    font-weight: bold;
+}
