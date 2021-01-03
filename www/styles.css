@@ -183,3 +183,8 @@ app specific
     color: #0D2935;
     font-weight: bold;
 }
+
+/* tweets */
+#section-tweetsDataFilters {
+    font-size: small;
+}

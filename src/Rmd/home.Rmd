@@ -2,7 +2,7 @@ Row
 ----------
 
 
-### Tweets
+### Tweets {id=homeValueBox_Tweets}
 
 ```{r}
 valueBox(
@@ -12,7 +12,7 @@ valueBox(
 )
 ```
 
-### Followers
+### Followers {id=homeValueBox_Followers}
 
 ```{r}
 valueBox(
@@ -22,7 +22,7 @@ valueBox(
 )
 ```
 
-### Following
+### Following {id=homeValueBox_Following}
 
 ```{r}
 valueBox(
@@ -32,7 +32,7 @@ valueBox(
 )
 ```
 
-### Likes
+### Likes {id=homeValueBox_Likes}
 
 ```{r}
 valueBox(
@@ -45,7 +45,7 @@ valueBox(
 Row
 ----------
 
-### **Tweet Type**
+### **Tweet Type** {id=homePlot_TweetType}
 
 ```{r}
 tweetTypePlot(
@@ -53,7 +53,7 @@ tweetTypePlot(
 )
 ```
 
-### **Tweet Source**
+### **Tweet Source** {id=homePlot_TweetSource}
 
 ```{r}
 tweetSourcePlot(
@@ -66,7 +66,7 @@ tweetSourcePlot(
 Row
 ----------
 
-### **Weekly Tweet Activity**
+### **Weekly Tweet Activity** {id=homePlot_TweetActivity}
 
 ```{r}
 tweetCountPlot(

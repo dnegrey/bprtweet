@@ -24,6 +24,7 @@ suppressMessages(loadPackages("etc/PACKAGES"))
 sink()
 sourceFunctions("src/R/app")
 load("pub/main.RData")
+main$timelineDateRange <- datepart(range(main$timeline$created_at))
 addResourcePath(basename(getwd()), getwd())
 ```
 
@@ -39,13 +40,19 @@ Home {data-icon=fa-home}
 ```{r, child = "src/Rmd/home.Rmd"}
 ```
 
+Tweets {data-icon=fa-twitter-square data-orientation=columns}
+=========
+
+```{r, child = "src/Rmd/tweets.Rmd"}
+```
+
 Followers {data-icon=fa-users}
 =========
 
 ```{r, child = "src/Rmd/followers.Rmd"}
 ```
 
-Hashtags {data-icon=fa-hashtag}
+Hashtags {data-icon=fa-hashtag data-orientation=columns}
 =========
 
 ```{r, child = "src/Rmd/hashtags.Rmd"}

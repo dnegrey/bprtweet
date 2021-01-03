@@ -1,12 +1,12 @@
 Column {data-width=205}
 ----------
 
-### **Data Filters** {id=hashtagsDataFilters}
+### **Data Filters** {id=tweetsDataFilters}
 
 ```{r}
 inputPanel(
     dateRangeInput(
-        inputId = "hashtagsDataFilter_DateRange",
+        inputId = "tweetsDataFilter_DateRange",
         label = "Date Range",
         start = main$timelineDateRange[1],
         end = main$timelineDateRange[2],
@@ -45,17 +45,4 @@ inputPanel(
 Column {data-width=795}
 ----------
 
-### **Tweeted**
-
-```{r}
-xwc <- data.frame(
-    word = unlist(main$timeline$hashtags),
-    stringsAsFactors = FALSE
-) %>%
-    group_by(word) %>%
-    summarise(count = n()) %>%
-    filter(!is.na(word))
-wordcloud2(xwc, shuffle = FALSE)
-```
-
-### **Liked**
+### 
