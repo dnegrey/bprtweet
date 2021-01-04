@@ -188,6 +188,22 @@ app specific
 #section-tweetsDataFilters {
     font-size: small;
 }
+#tweetsFilteredTweetCount {
+    height: 50px !important;
+    font-size: 24pt;
+    text-align: center;
+}
+#tweetsDataDT {
+    font-size: small;
+    color: #000000;
+}
+#tweetsDataDT a {
+    color: #1A90DF;
+    font-weight: bold;
+}
+#tweetsDataDT a:hover {
+    color: #FF8300;
+}
 
 /* hashtags */
 #section-hashtagsDataFilters {

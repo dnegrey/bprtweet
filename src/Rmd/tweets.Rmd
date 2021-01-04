@@ -42,7 +42,54 @@ inputPanel(
 )
 ```
 
+----------
+
+```{r}
+output$tweetsFilteredTweetCount <- renderText(
+    expr = {
+        x <- tweetsData()
+        xn <- nrow(x)
+        y <- formatNumeric(xn, "num", 0)
+        return(y)
+    }
+)
+textOutput("tweetsFilteredTweetCount")
+```
+
+<p style='font-size: 14pt; text-align: center;'>Filtered Tweets</p>
+
+----------
+
+```{r}
+tweetsData <- eventReactive(
+    eventExpr = list(
+        input$tweetsDataFilter_DateRange,
+        input$tweetsDataFilter_TweetType,
+        input$tweetsDataFilter_Liked,
+        input$tweetsDataFilter_Retweeted,
+        input$tweetsDataFilter_TweetSource
+    ),
+    valueExpr = tweetsDataFilter(
+        x = main$timeline,
+        dateRange = input$tweetsDataFilter_DateRange,
+        tweetType = input$tweetsDataFilter_TweetType,
+        liked = input$tweetsDataFilter_Liked,
+        retweeted = input$tweetsDataFilter_Retweeted,
+        tweetSource = input$tweetsDataFilter_TweetSource
+    )
+)
+```
+
 Column {data-width=795}
 ----------
 
 ### **Data Table** {id=tweetsDataTable}
+
+```{r}
+output$tweetsDataDT <- renderDT(
+    expr = tweetsDT(
+        x = tweetsData()
+    )
+)
+DTOutput("tweetsDataDT")
+```
