@@ -28,15 +28,28 @@ hashtagSummary <- function(x, dateRange, tweetType,
             Liked %in% liked,
             Retweeted %in% retweeted
         )
-    z <- data.frame(
-        word = unlist(y$hashtags),
-        stringsAsFactors = FALSE
-    ) %>%
-        group_by(word) %>%
-        summarise(count = n()) %>%
-        data.frame() %>%
-        filter(!is.na(word)) %>%
-        arrange(desc(count)) %>%
-        filter(count >= minCount)
+    yh <- unlist(y$hashtags)
+    if (!is.null(yh)) {
+        z <- data.frame(
+            word = yh,
+            stringsAsFactors = FALSE
+        ) %>%
+            group_by(word) %>%
+            summarise(freq = n()) %>%
+            data.frame() %>%
+            filter(!is.na(word)) %>%
+            arrange(desc(freq)) %>%
+            filter(freq >= minCount)
+        yh0 <- nrow(z) == 0
+    } else {
+        yh0 <- TRUE
+    }
+    if (yh0) {
+        z <- data.frame(
+            word = c("NULL", ""),
+            freq = c(2, 1),
+            stringsAsFactors = FALSE
+        )
+    }
     return(z)
 }

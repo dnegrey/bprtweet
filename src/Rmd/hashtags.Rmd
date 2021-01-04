@@ -64,34 +64,28 @@ hashtagSummaryTweeted <- eventReactive(
 )
 ```
 
-Column {data-width=495}
+Column {data-width=795}
 ----------
 
-### **BlastPoint Tweeted** {id=hashtagsTweetedCloud}
+### **Word Cloud** {id=hashtagsTweetedCloud}
 
 ```{r}
 output$hashtagCloudTweeted <- renderWordcloud2(
-    expr = wordcloud2(
-        data = hashtagSummaryTweeted()
-    )
+    expr = {
+        xc <- c(
+            "#32B1E6",
+            "#F9D230",
+            "#0D2935",
+            "#525252"
+        )
+        x <- hashtagSummaryTweeted()
+        xc <- rep(xc, nrow(x))[1:nrow(x)]
+        wordcloud2(
+            data = hashtagSummaryTweeted(),
+            fontFamily = "Roboto, sans-serif",
+            color = xc
+        )
+    }
 )
 wordcloud2Output("hashtagCloudTweeted")
-```
-
-### **BlastPoint Liked** {id=hashtagsLikedCloud}
-
-```{r}
-```
-
-Column {data-width=300}
-----------
-
-### **Summary** {id=hashtagsTweetedSummary}
-
-```{r}
-```
-
-### **Summary** {id=hashtagsLikedSummary}
-
-```{r}
 ```
