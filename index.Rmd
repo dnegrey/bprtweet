@@ -25,6 +25,7 @@ sink()
 sourceFunctions("src/R/app")
 load("pub/main.RData")
 main$timelineDateRange <- datepart(range(main$timeline$created_at))
+main$followers$is_retweeter <- main$followers$user_id %in% main$retweeters$user_id
 ```
 
 Sidebar {.sidebar}
@@ -45,7 +46,7 @@ Tweets {data-icon=fa-twitter-square data-orientation=columns}
 ```{r, child = "src/Rmd/tweets.Rmd"}
 ```
 
-Followers {data-icon=fa-users}
+Followers {data-icon=fa-users data-orientation=columns}
 =========
 
 ```{r, child = "src/Rmd/followers.Rmd"}

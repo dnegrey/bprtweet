@@ -1,0 +1,122 @@
+Column {data-width=205}
+----------
+
+### **Plot Controls** {id=followersDataFilters}
+
+```{r}
+inputPanel(
+    selectInput(
+        inputId = "followersDataFilter_Xvar",
+        label = "Horizontal (x-axis) Variable",
+        choices = c(
+            "Followers",
+            "Following",
+            "Tweets",
+            "Likes"
+        ),
+        selected = "Following"
+    ),
+    selectInput(
+        inputId = "followersDataFilter_Yvar",
+        label = "Vertical (y-axis) Variable",
+        choices = c(
+            "Followers",
+            "Following",
+            "Tweets",
+            "Likes"
+        ),
+        selected = "Followers"
+    ),
+    selectInput(
+        inputId = "followersDataFilter_Zvar",
+        label = "Marker Size Variable",
+        choices = c(
+            "Followers",
+            "Following",
+            "Tweets",
+            "Likes"
+        ),
+        selected = "Tweets"
+    )
+)
+```
+
+----------
+
+*Marker color indicates whether the follower has retweeted BlastPoint*
+
+----------
+
+```{r}
+output$followersFilteredFollowerCount <- renderText(
+    expr = {
+        x <- followersData()
+        xn <- nrow(x)
+        y <- formatNumeric(xn, "num", 0)
+        return(y)
+    }
+)
+textOutput("followersFilteredFollowerCount")
+```
+
+<p style='font-size: 14pt; text-align: center;'>Total Followers</p>
+
+Note: only `r sum(!is.na(main$followers$lat))` were successfully geo-coded
+
+----------
+
+```{r}
+inputPanel(
+    downloadButton(
+        "followersDataDownload",
+        "Download Data (csv)"
+    )
+)
+```
+
+```{r}
+followersData <- eventReactive(
+    eventExpr = list(
+    ),
+    valueExpr = followersDataFilter(
+        x = main$followers
+    )
+)
+```
+
+```{r}
+output$followersDataDownload <- downloadHandler(
+    filename = function() {
+        "Followers.csv"
+    },
+    content = function(file) {
+        write.csv(
+            x = followersData(),
+            file = file,
+            na = "",
+            row.names = FALSE
+        )
+    }
+)
+```
+
+Column {data-width=795 .tabset .tabset-fade}
+----------
+
+### **Scatter Plot** {id=followersPlot}
+
+```{r}
+output$followerPlot <- renderPlotly(
+    expr = followerScatterPlot(
+        x = main$followers,
+        vx = input$followersDataFilter_Xvar,
+        vy = input$followersDataFilter_Yvar,
+        vz = input$followersDataFilter_Zvar
+    )
+)
+plotlyOutput("followerPlot")
+```
+
+### **Location Map** {id=followersMap}
+
+

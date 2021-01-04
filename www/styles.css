@@ -221,3 +221,20 @@ app specific
     font-size: 24pt;
     text-align: center;
 }
+
+/* followers */
+#section-followersDataFilters {
+    font-size: small;
+}
+#followersFilteredFollowerCount {
+    height: 50px !important;
+    font-size: 24pt;
+    text-align: center;
+}
+#followersDataDownload {
+    font-size: small;
+}
+#followersDataDownload:hover {
+    background-color: #1A90DF;
+    color: #FFFFFF !important;
+}
