@@ -25,7 +25,6 @@ sink()
 sourceFunctions("src/R/app")
 load("pub/main.RData")
 main$timelineDateRange <- datepart(range(main$timeline$created_at))
-addResourcePath(basename(getwd()), getwd())
 ```
 
 Sidebar {.sidebar}

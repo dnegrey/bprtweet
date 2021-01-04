@@ -14,48 +14,84 @@ inputPanel(
         max = main$timelineDateRange[2]
     ),
     checkboxGroupInput(
-        inputId = "tweetsDataFilter_TweetType",
+        inputId = "hashtagsDataFilter_TweetType",
         label = "Tweet Type",
         choices = c("Original", "Quote", "Retweet"),
         selected = c("Original", "Quote", "Retweet")
     ),
-    selectInput(
-        inputId = "tweetsDataFilter_TweetSource",
-        label = "Tweet Source",
-        choices = uniqueValues(main$timeline$source),
-        multiple = TRUE
-    ),
     radioButtons(
-        inputId = "tweetsDataFilter_Liked",
+        inputId = "hashtagsDataFilter_Liked",
         label = "Liked",
         choices = c("Yes", "No", "Both"),
         selected = "Both",
         inline = TRUE
     ),
     radioButtons(
-        inputId = "tweetsDataFilter_Retweeted",
+        inputId = "hashtagsDataFilter_Retweeted",
         label = "Retweeted",
         choices = c("Yes", "No", "Both"),
         selected = "Both",
         inline = TRUE
+    ),
+    sliderInput(
+        inputId = "hashtagsDataFilter_MinCount",
+        label = "Minimum Tweet Count",
+        min = 1,
+        max = 10,
+        value = 1,
+        step = 1
     )
 )
 ```
 
-Column {data-width=795}
-----------
-
-### **Tweeted**
-
 ```{r}
-xwc <- data.frame(
-    word = unlist(main$timeline$hashtags),
-    stringsAsFactors = FALSE
-) %>%
-    group_by(word) %>%
-    summarise(count = n()) %>%
-    filter(!is.na(word))
-wordcloud2(xwc, shuffle = FALSE)
+hashtagSummaryTweeted <- eventReactive(
+    eventExpr = list(
+        input$hashtagsDataFilter_DateRange,
+        input$hashtagsDataFilter_TweetType,
+        input$hashtagsDataFilter_Liked,
+        input$hashtagsDataFilter_Retweeted,
+        input$hashtagsDataFilter_MinCount
+    ),
+    valueExpr = hashtagSummary(
+        x = main$timeline,
+        dateRange = input$hashtagsDataFilter_DateRange,
+        tweetType = input$hashtagsDataFilter_TweetType,
+        liked = input$hashtagsDataFilter_Liked,
+        retweeted = input$hashtagsDataFilter_Retweeted,
+        minCount = input$hashtagsDataFilter_MinCount
+    )
+)
 ```
 
-### **Liked**
+Column {data-width=495}
+----------
+
+### **BlastPoint Tweeted** {id=hashtagsTweetedCloud}
+
+```{r}
+output$hashtagCloudTweeted <- renderWordcloud2(
+    expr = wordcloud2(
+        data = hashtagSummaryTweeted()
+    )
+)
+wordcloud2Output("hashtagCloudTweeted")
+```
+
+### **BlastPoint Liked** {id=hashtagsLikedCloud}
+
+```{r}
+```
+
+Column {data-width=300}
+----------
+
+### **Summary** {id=hashtagsTweetedSummary}
+
+```{r}
+```
+
+### **Summary** {id=hashtagsLikedSummary}
+
+```{r}
+```
