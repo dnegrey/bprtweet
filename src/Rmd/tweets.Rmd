@@ -61,6 +61,15 @@ textOutput("tweetsFilteredTweetCount")
 ----------
 
 ```{r}
+inputPanel(
+    downloadButton(
+        "tweetsDataDownload",
+        "Download Data (csv)"
+    )
+)
+```
+
+```{r}
 tweetsData <- eventReactive(
     eventExpr = list(
         input$tweetsDataFilter_DateRange,
@@ -77,6 +86,39 @@ tweetsData <- eventReactive(
         retweeted = input$tweetsDataFilter_Retweeted,
         tweetSource = input$tweetsDataFilter_TweetSource
     )
+)
+```
+
+```{r}
+output$tweetsDataDownload <- downloadHandler(
+    filename = function() {
+        "Filtered_Tweets.csv"
+    },
+    content = function(file) {
+        xd <- tweetsData()
+        xd$hashtags <- unlist(lapply(xd$hashtags, function(v){
+            vo <- NA_character_
+            if (!all(is.na(v))) {
+                v <- v[!is.na(v)]
+                vo <- paste(v, collapse = "; ")
+            }
+            return(vo)
+        }))
+        xd$mentions_screen_name <- unlist(lapply(xd$mentions_screen_name, function(v){
+            vo <- NA_character_
+            if (!all(is.na(v))) {
+                v <- v[!is.na(v)]
+                vo <- paste(v, collapse = "; ")
+            }
+            return(vo)
+        }))
+        write.csv(
+            x = xd,
+            file = file,
+            na = "",
+            row.names = FALSE
+        )
+    }
 )
 ```
 

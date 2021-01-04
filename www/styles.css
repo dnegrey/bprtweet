@@ -204,6 +204,13 @@ app specific
 #tweetsDataDT a:hover {
     color: #FF8300;
 }
+#tweetsDataDownload {
+    font-size: small;
+}
+#tweetsDataDownload:hover {
+    background-color: #1A90DF;
+    color: #FFFFFF !important;
+}
 
 /* hashtags */
 #section-hashtagsDataFilters {
