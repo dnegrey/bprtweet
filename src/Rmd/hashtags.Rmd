@@ -44,6 +44,28 @@ inputPanel(
 )
 ```
 
+----------
+
+```{r}
+output$hashtagsFilteredTweetCount <- renderText(
+    expr = {
+        x <- hashtagSummaryTweeted()
+        xn <- unique(x$total)
+        y <- formatNumeric(xn, "num", 0)
+        return(y)
+    }
+)
+textOutput("hashtagsFilteredTweetCount")
+```
+
+<p style='font-size: 14pt; text-align: center;'>Filtered Tweets</p>
+
+----------
+
+*Reload page if word cloud fails to appear on load*
+
+----------
+
 ```{r}
 hashtagSummaryTweeted <- eventReactive(
     eventExpr = list(
@@ -81,10 +103,9 @@ output$hashtagCloudTweeted <- renderWordcloud2(
         x <- hashtagSummaryTweeted()
         xc <- rep(xc, nrow(x))[1:nrow(x)]
         wordcloud2(
-            data = hashtagSummaryTweeted(),
+            data = x[1:2],
             fontFamily = "Roboto, sans-serif",
-            color = xc,
-            shuffle = FALSE
+            color = xc
         )
     }
 )

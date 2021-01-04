@@ -193,3 +193,8 @@ app specific
 #section-hashtagsDataFilters {
     font-size: small;
 }
+#hashtagsFilteredTweetCount {
+    height: 50px !important;
+    font-size: 24pt;
+    text-align: center;
+}

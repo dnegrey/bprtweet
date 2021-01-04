@@ -28,6 +28,7 @@ hashtagSummary <- function(x, dateRange, tweetType,
             Liked %in% liked,
             Retweeted %in% retweeted
         )
+    yn <- nrow(y)
     yh <- unlist(y$hashtags)
     if (!is.null(yh)) {
         z <- data.frame(
@@ -51,5 +52,6 @@ hashtagSummary <- function(x, dateRange, tweetType,
             stringsAsFactors = FALSE
         )
     }
+    z$total <- yn
     return(z)
 }

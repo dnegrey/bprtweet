@@ -1,7 +1,7 @@
 Column {data-width=205}
 ----------
 
-### **Data Filters** {id=tweetsDataFilters}
+### **Tweet Filters** {id=tweetsDataFilters}
 
 ```{r}
 inputPanel(
@@ -19,12 +19,6 @@ inputPanel(
         choices = c("Original", "Quote", "Retweet"),
         selected = c("Original", "Quote", "Retweet")
     ),
-    selectInput(
-        inputId = "tweetsDataFilter_TweetSource",
-        label = "Tweet Source",
-        choices = uniqueValues(main$timeline$source),
-        multiple = TRUE
-    ),
     radioButtons(
         inputId = "tweetsDataFilter_Liked",
         label = "Liked",
@@ -38,6 +32,12 @@ inputPanel(
         choices = c("Yes", "No", "Both"),
         selected = "Both",
         inline = TRUE
+    ),
+    selectInput(
+        inputId = "tweetsDataFilter_TweetSource",
+        label = "Tweet Source",
+        choices = uniqueValues(main$timeline$source),
+        multiple = TRUE
     )
 )
 ```
@@ -45,4 +45,4 @@ inputPanel(
 Column {data-width=795}
 ----------
 
-### 
+### **Data Table** {id=tweetsDataTable}
