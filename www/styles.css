@@ -198,17 +198,17 @@ app specific
     color: #000000;
 }
 #tweetsDataDT a {
-    color: #1A90DF;
+    color: #32B1E6;
     font-weight: bold;
 }
 #tweetsDataDT a:hover {
-    color: #FF8300;
+    color: #F9D230;
 }
 #tweetsDataDownload {
     font-size: small;
 }
 #tweetsDataDownload:hover {
-    background-color: #1A90DF;
+    background-color: #32B1E6;
     color: #FFFFFF !important;
 }
 
@@ -235,6 +235,6 @@ app specific
     font-size: small;
 }
 #followersDataDownload:hover {
-    background-color: #1A90DF;
+    background-color: #32B1E6;
     color: #FFFFFF !important;
 }
