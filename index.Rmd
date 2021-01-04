@@ -57,7 +57,7 @@ Hashtags {data-icon=fa-hashtag data-orientation=columns}
 ```{r, child = "src/Rmd/hashtags.Rmd"}
 ```
 
-Slides {data-icon=fa-slideshare}
+Slides {data-icon=fa-slideshare .storyboard}
 =========
 
 ```{r, child = "src/Rmd/slides.Rmd"}

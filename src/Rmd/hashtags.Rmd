@@ -1,7 +1,7 @@
 Column {data-width=205}
 ----------
 
-### **Data Filters** {id=hashtagsDataFilters}
+### **Tweet Filters** {id=hashtagsDataFilters}
 
 ```{r}
 inputPanel(
@@ -35,7 +35,7 @@ inputPanel(
     ),
     sliderInput(
         inputId = "hashtagsDataFilter_MinCount",
-        label = "Minimum Tweet Count",
+        label = "Hashtag Minimum Tweet Count",
         min = 1,
         max = 10,
         value = 1,
@@ -83,7 +83,8 @@ output$hashtagCloudTweeted <- renderWordcloud2(
         wordcloud2(
             data = hashtagSummaryTweeted(),
             fontFamily = "Roboto, sans-serif",
-            color = xc
+            color = xc,
+            shuffle = FALSE
         )
     }
 )

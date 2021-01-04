@@ -1,0 +1,34 @@
+### Slide 1
+
+<div style='width: 49%; height: 99%; border: 1px solid red; float: left;'>
+```{r}
+plot_ly(data = mtcars, x = ~hp, y = ~mpg, type = "scatter", mode = "markers")
+```
+</div>
+
+<div style='width: 50%; height: 99%; border: 1px solid blue; margin-left: 50%;'>
+```{r}
+wordcloud2(demoFreq)
+```
+</div>
+
+### Slide 2
+
+<div style='width: 49%; height: 99%; border: 1px solid red; float: left;'>
+
+```{r, eval=FALSE, echo=TRUE}
+library(rtweet)
+library(wordcloud2)
+
+timeline <- get_timeline("blastpointinc")
+```
+
+</div>
+
+<div style='width: 50%; height: 99%; border: 1px solid blue; margin-left: 50%;'>
+```{r}
+wordcloud2(demoFreq)
+```
+</div>
+
+### Slide 3

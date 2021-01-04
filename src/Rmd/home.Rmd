@@ -61,7 +61,13 @@ tweetSourcePlot(
 )
 ```
 
-### 
+### **Tweet Engagement** {id=homePlot_TweetEngagement}
+
+```{r}
+tweetEngagementPlot(
+    x = tweetEngagementSummary()
+)
+```
 
 Row
 ----------
