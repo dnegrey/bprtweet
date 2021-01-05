@@ -2,11 +2,11 @@
 
 <h3>Background</h3>
 
-This application is designed to ...
+This application is designed to demonstrate the ability to extract data from the Twitter API using the [rtweet](https://cran.r-project.org/web/packages/rtweet/index.html) package as well as visualize and present the information using various packages including [DT](https://cran.r-project.org/web/packages/DT/index.html), [plotly](https://cran.r-project.org/web/packages/plotly/index.html), [leaflet](https://cran.r-project.org/web/packages/leaflet/index.html) and [wordcloud2](https://cran.r-project.org/web/packages/wordcloud2/index.html).
 
 <h3>Getting Started</h3>
 
-The [Home](#section-home) page provides ...
+The [Home](#section-home) page provides a high level overview of lifetime tweet activity. For more tweet detail, visit the [Tweets](#section-tweets) page where you can filter, sort, search and download tweet level data. The [Followers](#section-followers) page includes interactive plots to visualize the social reach and geographic location of the account's followers. For a keyword analysis, visit the [Hashtags](#section-hashtags) page to learn more about the frequency of hashtags used. Lastly, the [Slides](#section-slides) page contains a storyboard that reveals the code behind much of this as well as insights gained. 
 
 <h3>Support</h3>
 

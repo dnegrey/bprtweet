@@ -43,25 +43,15 @@ inputPanel(
 
 ----------
 
-*Marker color indicates whether the follower has retweeted BlastPoint*
+*For the scatter plot, marker color indicates whether the follower has retweeted BlastPoint. On the location map, you can hide/display these groups by clicking their corresponding checkbox in the layer control.*
 
 ----------
 
-```{r}
-output$followersFilteredFollowerCount <- renderText(
-    expr = {
-        x <- followersData()
-        xn <- nrow(x)
-        y <- formatNumeric(xn, "num", 0)
-        return(y)
-    }
-)
-textOutput("followersFilteredFollowerCount")
-```
+<p id="followersFilteredFollowerCount">`r nrow(main$followers)`</p>
 
 <p style='font-size: 14pt; text-align: center;'>Total Followers</p>
 
-Note: only `r sum(!is.na(main$followers$lat))` were successfully geo-coded
+Note: only `r sum(!is.na(main$followers$lat))` were able to be geo-coded
 
 ----------
 
@@ -75,23 +65,13 @@ inputPanel(
 ```
 
 ```{r}
-followersData <- eventReactive(
-    eventExpr = list(
-    ),
-    valueExpr = followersDataFilter(
-        x = main$followers
-    )
-)
-```
-
-```{r}
 output$followersDataDownload <- downloadHandler(
     filename = function() {
         "Followers.csv"
     },
     content = function(file) {
         write.csv(
-            x = followersData(),
+            x = main$followers,
             file = file,
             na = "",
             row.names = FALSE
@@ -119,4 +99,11 @@ plotlyOutput("followerPlot")
 
 ### **Location Map** {id=followersMap}
 
-
+```{r}
+output$followerMap <- renderLeaflet(
+    expr = followerLeafletMap(
+        x = main$followers
+    )
+)
+leafletOutput("followerMap")
+```
